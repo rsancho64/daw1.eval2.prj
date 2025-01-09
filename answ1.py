@@ -47,6 +47,16 @@ def editar_dato(diccionario):
     else:
         print(f"La clave '{clave}' no existe en el diccionario.")
 
+# Función para ver el contenido del diccionario actual
+def ver_diccionario(diccionario):
+    if diccionario:
+        print("\nContenido del diccionario actual:")
+        for clave, valor in diccionario.items():
+            if clave != 'nombre':  # Excluimos la clave 'nombre' que es solo para identificación
+                print(f"{clave}: {valor}")
+    else:
+        print("No hay datos en el diccionario.")
+
 # Función para mostrar el menú
 def mostrar_menu():
     print("\n--- Menú ---")
@@ -54,8 +64,9 @@ def mostrar_menu():
     print("2. Cargar un diccionario desde un archivo")
     print("3. Agregar un nuevo dato al diccionario")
     print("4. Editar un dato existente del diccionario")
-    print("5. Guardar el diccionario actual")
-    print("6. Salir")
+    print("5. Ver diccionario actual")
+    print("6. Guardar el diccionario actual")
+    print("7. Salir")
 
 # Función principal
 def main():
@@ -84,13 +95,19 @@ def main():
             else:
                 print("Primero debes crear o cargar un diccionario.")
         elif opcion == '5':
+            # Ver el diccionario actual
+            if diccionario:
+                ver_diccionario(diccionario)
+            else:
+                print("No hay diccionario cargado o creado.")
+        elif opcion == '6':
             # Guardar el diccionario actual en un archivo
             if diccionario:
                 nombre_archivo = input("Introduce el nombre del archivo para guardar: ")
                 guardar_diccionario(diccionario, nombre_archivo)
             else:
                 print("No hay diccionario para guardar.")
-        elif opcion == '6':
+        elif opcion == '7':
             # Salir
             print("¡Hasta luego!")
             break
