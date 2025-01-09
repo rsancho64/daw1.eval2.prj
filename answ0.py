@@ -18,13 +18,32 @@ def cargar_diccionario(nombre_archivo):
         print(f"El archivo {nombre_archivo} no existe.")
         return {}
 
+# Función para mostrar el contenido del diccionario y navegar por él
+def ver_diccionario(diccionario):
+    if diccionario:
+        print("\nContenido del diccionario:")
+        for clave, valor in diccionario.items():
+            print(f"{clave}: {valor}")
+        
+        # Preguntar si quiere ver el detalle de una clave
+        clave = input("\nIntroduce la clave que deseas ver (o presiona Enter para volver al menú): ")
+        
+        if clave:
+            if clave in diccionario:
+                print(f"{clave}: {diccionario[clave]}")
+            else:
+                print("La clave no existe en el diccionario.")
+    else:
+        print("El diccionario está vacío o no ha sido cargado.")
+
 # Función para mostrar el menú
 def mostrar_menu():
     print("\n--- Menú ---")
     print("1. Crear un nuevo diccionario")
     print("2. Cargar un diccionario desde un archivo")
     print("3. Guardar el diccionario actual")
-    print("4. Salir")
+    print("4. Ver contenido del diccionario")
+    print("5. Salir")
 
 # Función principal
 def main():
@@ -46,6 +65,9 @@ def main():
             nombre_archivo = input("Introduce el nombre del archivo para guardar: ")
             guardar_diccionario(diccionario, nombre_archivo)
         elif opcion == '4':
+            # Ver el contenido del diccionario
+            ver_diccionario(diccionario)
+        elif opcion == '5':
             # Salir
             print("¡Hasta luego!")
             break
